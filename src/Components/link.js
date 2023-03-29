@@ -1,2 +1,2 @@
-export const fullLink = "https://jujutsu-online-mobile-store.onrender.com"
+export const fullLink = "http://localhost:4000"
 // http://localhost:4000
