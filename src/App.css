@@ -3,21 +3,21 @@
 }
 
 .phone-picture {
-  height: 540px;
-  width: 750px;
+  margin: 25px;
+  background-repeat: no-repeat;
   object-fit: contain;
+
 }
 
 .phone-container {
   background-color: white;
-  width: 750px;
+  width: 300px;
   border-radius: 12px;
   overflow: hidden;
   box-shadow: rgb(0 0 0 / 24%) 1px 2px 13px;
 }
 
 .phone-name {
-  padding: 16px;
   font-size: 48px;
   margin-bottom: 0px;
 
@@ -29,17 +29,23 @@
   font-size: 32px;
   color: grey;
   /* font-weight: bold; */
-  margin-top: 0px;
 }
 
 body {
-  background-color: whitesmoke;
-  font-family: Roboto;
   margin: 16px;
+
+  background: url("https://wallpapercave.com/wp/wp7213366.jpg");
+  background-repeat: no-repeat;
+  background-position: center center;
+  background-size: cover;
+  background-attachment: fixed;
+
+
 }
 
 .phone-list-container {
   display: flex;
+  flex-direction: row;
   flex-wrap: wrap;
   justify-content: center;
   gap: 24px;
