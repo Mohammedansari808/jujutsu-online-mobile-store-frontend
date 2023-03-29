@@ -26,12 +26,12 @@ function PendingOrders() {
         }).then((res) => res.json())
             .then(res => { setAllOrders(res) })
     }, [])
-    const handleSubmit = (username, email, delivered, id) => {
+    const handleSubmit = (email, delivered, order) => {
         const finalData = {
             email: email,
-            order: delivered,
-            username: username,
-            id: id
+            delivered: delivered,
+            order: order
+
 
         }
         fetch(`${fullLink}/changestatus`, {
@@ -92,7 +92,7 @@ function PendingOrders() {
                                                     <p>Payment Status : {order.paid ? <b>PAID</b> : <b>NOT PAID</b>}</p>
                                                     <p>Ordered Status : {order.ordered ? <b>Order Success</b> : <b>Order Fail</b>}</p>
                                                     <p>Delivery Status : {order.delivered ? <b>Delivery success</b> : <b>Delivery Pending</b>}</p>
-                                                    <Button style={{ margin: "7px" }} variant='success' onClick={() => { handleSubmit(data.username, data.email, order.delivered, data._id) }}>Change Delivery status</Button>
+                                                    <Button style={{ margin: "7px" }} variant='success' onClick={() => { handleSubmit(data.email, order.delivered, order.order_no) }}>Change Delivery status</Button>
                                                 </div>
                                                 <div>
                                                     <details>
