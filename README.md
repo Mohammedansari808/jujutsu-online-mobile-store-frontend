@@ -1,7 +1,7 @@
 # About This Page
 
-##This page is an online mobile store so that customers can buy their mobiles in the online.
-##Authentication and Authorization is given in this web application.Only Admin has the Power to do CRUD Operations
+This page is an online mobile store so that customers can buy their mobiles in the online.
+Authentication and Authorization is given in this web application.Only Admin has the Power to do CRUD Operations.
 
 ## How to Use the Site
 * Authorization and Authentication is used in this Website so Signup is mandatory.
