@@ -8,6 +8,7 @@ import DeleteIcon from '@mui/icons-material/Delete';
 import EditIcon from '@mui/icons-material/Edit';
 import TextField from '@mui/material/TextField';
 import { contxt } from '../../App';
+import { toast } from 'react-toastify';
 
 function Products() {
     const navigate = useNavigate()
@@ -92,8 +93,6 @@ function Mobiles({ mobile, mobiles, setMobiles }) {
     const handleDelete = (id) => {
         const filData = mobiles.filter((mob) => mob._id != id)
         setMobiles(filData)
-
-
         fetch(`${fullLink}/products/deleteproduct/${id}`, {
             method: "DELETE",
             headers: {
@@ -101,7 +100,11 @@ function Mobiles({ mobile, mobiles, setMobiles }) {
             }
         })
             .then(data => data.json())
-            .then(res => console.log(res))
+            .then(res => {
+                if (res.message == "successfully deleted") {
+                    toast.success("successfully deleted")
+                }
+            })
 
 
     }
