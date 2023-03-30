@@ -3,8 +3,11 @@ import { fullLink } from '../link'
 
 function MyOrders() {
     const [myOrders, setMyOrders] = useState([])
+    //authentication
     const token = localStorage.getItem("token")
     const username = localStorage.getItem('username')
+
+    //to fetch orders from the users
     useEffect(() => {
         const data = fetch(`${fullLink}/orderdata/${username}`, {
             method: "GET",

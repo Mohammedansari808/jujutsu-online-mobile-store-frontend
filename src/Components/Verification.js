@@ -12,6 +12,7 @@ const bookV = Yup.object({
     otp: Yup.string().min(4, "Please enter a valid OTP").required("Please enter the OTP")
 })
 function Verification() {
+    //for forgot password verification link this component is used
     const [load, setLoad] = useState(false)
 
     const { username, id } = useParams()

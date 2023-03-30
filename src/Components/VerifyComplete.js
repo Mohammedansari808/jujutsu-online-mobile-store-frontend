@@ -4,6 +4,7 @@ import { toast } from 'react-toastify';
 import { useNavigate, useParams } from 'react-router-dom';
 
 function VerifyComplete() {
+    //for signin verification this component is used
     const { username, id } = useParams()
     const navigate = useNavigate()
 

@@ -8,13 +8,19 @@ import * as Yup from "yup";
 import { useNavigate, useParams } from 'react-router-dom';
 import { contxt } from '../../App';
 function EditProduct() {
+    //only accessible by admin
+    // authentication
     const token = localStorage.getItem("token")
     const role_id = localStorage.getItem("role_id")
+
     const { mobiles } = useContext(contxt)
     const { id } = useParams()
+
     const navigate = useNavigate()
+
     const mobile = mobiles.filter((data) => data._id === id)
     const [load, setLoad] = useState(false)
+
     const bookVali = Yup.object({
         phonepicture: Yup.string()
             .matches(

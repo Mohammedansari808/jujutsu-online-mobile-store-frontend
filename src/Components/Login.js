@@ -12,7 +12,6 @@ const bookVali = Yup.object({
     password: Yup.string().min(4, "username or password is incorrect").required("Please fill the password")
 })
 function Login() {
-    const { setLogEnable } = useContext(contxt)
     const [load, setLoad] = useState(false)
     const navigate = useNavigate()
 
@@ -34,7 +33,6 @@ function Login() {
                 }
             })
             let result = await data.json()
-            console.log(result)
             if (result.message == "successful login") {
                 localStorage.setItem("token", result.token)
                 localStorage.setItem('role_id', result.role_id)
@@ -43,7 +41,6 @@ function Login() {
                 toast.success("login successful")
 
                 navigate(`/products`)
-                setLogEnable(true)
             } else {
                 setLoad(false)
                 toast.error("username Or password is wrong")
@@ -57,14 +54,17 @@ function Login() {
         <div >
             <div style={{ display: "flex", justifyContent: "space-between" }}>
                 <h2 style={{ margin: "15px" }}>Login</h2>
-                <Button style={{ margin: "15px" }} onClick={() => navigate("/signup")} color="success" variant="contained">Signup</Button>
+                <Button sx={{
+                    color: "white", backgroundColor: "rgb(208 179 248)", '&:hover': {
+                        backgroundColor: "black", color: "whitesmoke"
+                    }
+                }} style={{ margin: "15px" }} onClick={() => navigate("/signup")} color="success" variant="contained">Signup</Button>
 
             </div>
 
             <div style={{ height: "100vh", width: "100vw", display: "flex", justifyContent: "center", alignItems: "center", alignContent: "flex-end" }}>
 
                 <div>
-                    <p>username : user3 and password :user33 for direct login or else please signup</p>
                     <form style={{ padding: "40px", width: "400px", borderRadius: "7px", boxShadow: "2px 2px 20px black" }} onSubmit={formik.handleSubmit}>
                         <TextField onBlur={formik.handleBlur} style={{ margin: "15px", width: "300px" }} id="standard-basic"
                             name="username" label="Username" onChange={formik.handleChange}
@@ -79,10 +79,14 @@ function Login() {
                         <div style={{ color: "red", fontSize: "15px", marginLeft: "10px" }}>
                             {formik.touched.password && formik.errors.password ? formik.errors.password : null}
                         </div>
-                        <Button style={{ marginTop: "8px" }} type="submit" color="success" variant="contained">{load ? <i className="fa fa-circle-o-notch fa-spin"></i> : null}login</Button>
+                        <Button sx={{
+                            backgroundColor: "rgb(252 181 157)", '&:hover': {
+                                backgroundColor: "black", color: "whitesmoke"
+                            }
+                        }} style={{ marginTop: "8px" }} type="submit" color="success" variant="contained">{load ? <i className="fa fa-circle-o-notch fa-spin"></i> : null}login</Button>
 
                     </form>
-                    <div style={{ display: "flex", justifyContent: "space-around" }}>
+                    <div style={{ display: "flex", justifyContent: "space-between" }}>
                         <div></div>
                         <Button style={{ marginLeft: "10px", marginTop: "8px" }} onClick={() => navigate("/forgetpassword")} color="primary" >Forget Password</Button>
 

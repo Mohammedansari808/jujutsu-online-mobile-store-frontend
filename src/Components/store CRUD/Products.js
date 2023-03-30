@@ -11,10 +11,11 @@ import { contxt } from '../../App';
 
 function Products() {
     const navigate = useNavigate()
-
+    //authentication
     const token = localStorage.getItem("token")
     const [mobiles, setMobiles] = useState([])
-    // https://tired-gold-cape.cyclic.app
+
+
     useEffect(() => {
         fetch(`${fullLink}/products`, {
             method: 'GET',
@@ -28,7 +29,7 @@ function Products() {
 
 
     }, [])
-
+    //after clearing search bar to rerender
     const filterRefresh = () => {
         fetch(`${fullLink}/products`, {
             method: 'GET',
@@ -61,11 +62,19 @@ function Products() {
 
     return (
         <div>
-            <TextField label="Search"
-                id="outlined-size-small"
-                size="small"
-                sx={{ backgroundColor: "white", border: "1px solid white", borderRadius: "5px", width: "200px" }}
-                type="text" onChange={handleChange} />
+            <div style={{ display: "flex", justifyContent: "center" }}>
+                <TextField label="Filter"
+                    id="outlined-size-small"
+                    size="small"
+                    sx={{ backgroundColor: "white", border: "1px solid white", borderRadius: "5px", width: "200px" }}
+                    type="text" onChange={handleChange} />
+                <Button style={{ marginLeft: "35px", marginRight: "5px" }} sx={{
+                    backgroundColor: "rgb(234 186 248)", '&:hover': {
+                        backgroundColor: "black", color: "whitesmoke"
+                    }
+                }} onClick={() => (navigate("/addproducts"))} variant="contained">Add Product</Button>
+            </div>
+
             <div className='phone-list-container'>
                 {
                     mobiles.map((mobile, ind) => (<Mobiles key={ind} mobile={mobile} mobiles={mobiles} setMobiles={setMobiles} />))
@@ -102,8 +111,8 @@ function Mobiles({ mobile, mobiles, setMobiles }) {
 
             <div className='phone-container'>
                 <img alt={mobile.model} className='phone-picture' height={150} width={150} src={mobile.phone_picture} />
-                <h4 className='phone-name' style={{ margin: "0" }}>{mobile.phone_name}</h4>
-                <h3 className='phone-company' style={{ margin: 0 }}>{mobile.phone_model}</h3>
+                <div className='phone-name' style={{ margin: "0" }}>{mobile.phone_name}</div>
+                <div className='phone-company' style={{ margin: 0 }}>{mobile.phone_model}</div>
                 {mobile.phone_offer > 0 ? (
                     <>
                         <div style={{ display: "flex", justifyContent: "center", alignItems: "center" }}>
@@ -120,18 +129,18 @@ function Mobiles({ mobile, mobiles, setMobiles }) {
 
                 ) : <h4>Rate : {mobile.phone_rate}</h4>}
 
-                <p>RAM : {mobile.phone_ram}GB</p>
-                <p>ROM : {mobile.phone_rom}GB</p>
+                <p style={{ margin: 1, padding: 0 }}><b>RAM </b>: {mobile.phone_ram}GB</p>
+                <p style={{ margin: 1, padding: 0 }}><b>ROM</b> : {mobile.phone_rom}GB</p>
 
                 {role_id == 6298 ? (<div style={{ paddingBottom: "15px", display: "flex", alignItems: "center", justifyContent: "space-around" }}>
                     <Button color="success" onClick={() => { navigate(`/editproducts/${mobile._id}`) }} variant="contained"><EditIcon /></Button>
-                    <Button onClick={() => handleDelete(mobile._id)} color="error"><DeleteIcon /></Button>
+                    <Button variant="contained" onClick={() => handleDelete(mobile._id)} color="error"><DeleteIcon /></Button>
                 </div>) : null}
                 <Button sx={{
-                    color: "white", backgroundColor: "rgb(208 179 248)", '&:hover': {
+                    color: "white", backgroundColor: "rgb(234 150 248)", '&:hover': {
                         backgroundColor: "black", color: "whitesmoke"
                     }
-                }} style={{ marginBottom: "10px" }} onClick={() => { setProduct(mobile); navigate("/shipping-address") }}>Buy Product</Button>
+                }} style={{ margin: "10px" }} onClick={() => { setProduct(mobile); navigate("/shipping-address") }}>Buy Product</Button>
             </div>
 
         </div>

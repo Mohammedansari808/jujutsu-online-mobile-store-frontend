@@ -15,12 +15,14 @@ import { fullLink } from "../link";
 const stripePromise = loadStripe("pk_test_51MV6exSC4rEaEZLNvOofe5me2XVjOKrd591BK8SFWEVXrKi0GyHtlqeybQKMZ6aRU3zC7fu9XqciET57jh73ys9500glma6aLV");
 
 export default function PaymentPage(props) {
-
+    //authentication
     const token = localStorage.getItem("token")
     const email = localStorage.getItem("email")
     const username = localStorage.getItem("username")
     const [clientSecret, setClientSecret] = useState("");
     const { product, address } = useContext(contxt)
+
+    //creating separate token for payment success
     useEffect(() => {
         fetch(`${fullLink}/onetimetoken`, {
             method: "GET",
@@ -30,6 +32,8 @@ export default function PaymentPage(props) {
         }).then(res => res.json())
             .then(res => localStorage.setItem("ot-auth-token", res.token))
             .catch(err => console.log(err))
+
+
         toast.success("use 4242 4242 4242 4242 card no for testing", {
             position: toast.POSITION.TOP_CENTER,
             autoClose: false
@@ -42,6 +46,7 @@ export default function PaymentPage(props) {
             email: email,
 
         }
+        //return_url in checkoutform reloads page so address,product data stored in session storage
         sessionStorage.setItem("mob_data", JSON.stringify(finaldata))
 
         // Create PaymentIntent as soon as the page loads

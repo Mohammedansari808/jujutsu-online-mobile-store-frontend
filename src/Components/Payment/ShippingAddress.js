@@ -10,6 +10,7 @@ const bookVali = Yup.object({
     address: Yup.string().min(10, "Enter complete address").required("Please Fill")
 })
 function ShippingAddress() {
+
     const { setAddress } = useContext(contxt)
     const navigate = useNavigate()
     const formik = useFormik({
@@ -24,6 +25,7 @@ function ShippingAddress() {
                 address: values.address
             }
             setAddress(data)
+            //navigating to payment
             toast.warning("Please dont reload!!! navigating to Payments")
             navigate("/payment")
         }

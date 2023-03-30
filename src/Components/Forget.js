@@ -9,8 +9,10 @@ import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 function Forget() {
     const [load, setLoad] = useState(false)
+    //to change into please wait this hook is used
     const [vlink, setVlink] = useState("send verification link")
     const navigate = useNavigate()
+
     const formik = useFormik({
         initialValues: {
             username: "",

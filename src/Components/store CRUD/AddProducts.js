@@ -9,6 +9,8 @@ import Checkbox from '@mui/material/Checkbox';
 import { FormControlLabel } from '@mui/material';
 
 function AddProducts() {
+    //accessible only by admin
+
     const token = localStorage.getItem('token')
     const [load, setLoad] = useState(false)
     const bookVali = Yup.object({

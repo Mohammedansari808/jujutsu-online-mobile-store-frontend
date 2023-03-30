@@ -4,9 +4,13 @@ import { toast } from 'react-toastify'
 import { fullLink } from '../link'
 
 function PendingOrders() {
+    //only displayed and accessed by admin
+    //authentcation
     const role_id = localStorage.getItem("role_id")
     const token = localStorage.getItem("token")
+
     const [allOrders, setAllOrders] = useState()
+    //this is function to rerender after changing the delivery pending status
     function reload() {
         fetch(`${fullLink}/allorders`, {
             method: "GET",
@@ -16,6 +20,7 @@ function PendingOrders() {
         }).then((res) => res.json())
             .then(res => { setAllOrders(res); })
     }
+    //to display all orders of the users
     useEffect(() => {
         fetch(`${fullLink}/allorders`, {
             method: "GET",
@@ -26,6 +31,7 @@ function PendingOrders() {
         }).then((res) => res.json())
             .then(res => { setAllOrders(res) })
     }, [])
+    //for delivery status button which changes the delivery status
     const handleSubmit = (email, delivered, order) => {
         const finalData = {
             email: email,
@@ -51,13 +57,14 @@ function PendingOrders() {
                 }
             })
     }
+
     return (
         <div style={{ width: 'auto' }} className='phone-container'>
             <h2>PendingOrders</h2>
             {role_id == 6298 ? (<div>{
-                allOrders != undefined ? (allOrders.data.map((data) => {
+                allOrders != undefined ? (allOrders.data.map((data,ind) => {
                     return (
-                        <div >
+                        <div key={ind} >
                             <div>username : <b>{data.username}</b></div>
                             <div>email :<b>{data.email}</b></div>
                             <div style={{ display: "flex", justifyContent: "center", flexWrap: "wrap" }}>

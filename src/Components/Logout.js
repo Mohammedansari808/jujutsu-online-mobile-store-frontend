@@ -8,8 +8,10 @@ function Logout() {
     const navigate = useNavigate()
     const role_id = localStorage.getItem("role_id")
     const [load, setLoad] = useState(false)
+
     const logout = () => {
         setLoad(true)
+        //removing 
         localStorage.removeItem('token')
         localStorage.removeItem("role_id")
         localStorage.removeItem("username")
@@ -26,11 +28,12 @@ function Logout() {
                         backgroundColor: "black", color: "whitesmoke"
                     }
                 }} variant="contained">My Orders</Button>
-                {role_id == 6298 ? <Button style={{ marginLeft: "5px", marginRight: "5px" }} sx={{
-                    backgroundColor: "rgb(208 179 248)", '&:hover': {
-                        backgroundColor: "black", color: "whitesmoke"
-                    }
-                }} onClick={() => (navigate("/pendingorders"))} variant="contained">Pending Orders</Button> : null}
+                {role_id == 6298 ?
+                    <Button style={{ marginLeft: "5px", marginRight: "5px" }} sx={{
+                        backgroundColor: "rgb(208 179 248)", '&:hover': {
+                            backgroundColor: "black", color: "whitesmoke"
+                        }
+                    }} onClick={() => (navigate("/pendingorders"))} variant="contained">Pending Orders</Button> : null}
                 <Button sx={{
                     backgroundColor: "rgb(252 181 157)", '&:hover': {
                         backgroundColor: "black", color: "whitesmoke"

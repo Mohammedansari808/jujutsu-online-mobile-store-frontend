@@ -7,16 +7,9 @@ import {
     CardElement
 } from "@stripe/react-stripe-js";
 import { toast } from "react-toastify";
-import { useNavigate } from "react-router-dom";
 
 export default function CheckoutForm(props) {
-
-
-
-    // localStorage.setItem("token", props.token)
-    // localStorage.setItem('role_id', props.role_id)
-    // localStorage.setItem("username", props.username)
-    // localStorage.setItem("email", props.email)
+    //stripe js
     const stripe = useStripe();
     const elements = useElements();
     const [email, setEmail] = useState('');
@@ -70,7 +63,7 @@ export default function CheckoutForm(props) {
             confirmParams: {
                 // Make sure to change this to your payment completion page
                 // "http://localhost:3000/payment-success/:id"
-                return_url: "http://localhost:3000/payment-success",
+                return_url: "https://jujutsu-online-mobile-store-0nh8.onrender.com/payment-success",
                 receipt_email: props.email,
 
 
