@@ -1,3 +1,20 @@
+# About This Page
+
+This page is an online mobile store so that customers can buy their mobiles in the online.
+Authentication and Authorization is given in this web application.Only Admin has the Power to do CRUD Operations.
+
+## How to Use the Site
+* Authorization and Authentication is used in this Website so Signup is mandatory.
+* After Signup You will get a VERIFICATION LINK to your mail.
+* You can Hop in only When you get verified by clicking the link.
+* After Login You see the Products by Clicking Buy Product it will redirect to Shipping Component so that you can enter Your Address.
+* After Entering the Address,it will redirect to PAYMENT PAGE created with help of STRIPE and you must enter the card details to Purchase the particular product
+* if the Payment is successful it WIll redirect you to Success Page and Your Order will Be placed 
+* You can see your orders in My Orders Page and Delivery wil be in Pending Status 
+* Pending Status is Only changed by the Admin.
+
+
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
