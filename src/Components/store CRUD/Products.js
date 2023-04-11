@@ -15,7 +15,7 @@ function Products() {
     //authentication
     const token = localStorage.getItem("token")
     const [mobiles, setMobiles] = useState([])
-
+    const role_id = localStorage.getItem("role_id")
 
     useEffect(() => {
         fetch(`${fullLink}/products`, {
@@ -69,11 +69,15 @@ function Products() {
                     size="small"
                     sx={{ backgroundColor: "white", border: "1px solid white", borderRadius: "5px", width: "200px" }}
                     type="text" onChange={handleChange} />
-                <Button style={{ marginLeft: "35px", marginRight: "5px" }} sx={{
-                    backgroundColor: "rgb(234 186 248)", '&:hover': {
-                        backgroundColor: "black", color: "whitesmoke"
-                    }
-                }} onClick={() => (navigate("/addproducts"))} variant="contained">Add Product</Button>
+
+                {role_id == 6298 ?
+                    <Button style={{ marginLeft: "35px", marginRight: "5px" }} sx={{
+                        backgroundColor: "rgb(234 186 248)", '&:hover': {
+                            backgroundColor: "black", color: "whitesmoke"
+                        }
+                    }} onClick={() => (navigate("/addproducts"))} variant="contained">Add Product</Button>
+                    : null
+                }
             </div>
 
             <div className='phone-list-container'>
